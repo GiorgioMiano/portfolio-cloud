@@ -21,8 +21,8 @@ jobs:
 
     - name: Build e Push Immagine Docker
       run: |
-        docker build -t ${{ secrets.ACR_SERVER }}/portfolio:${{ github.sha }} .
-        docker push ${{ secrets.ACR_SERVER }}/portfolio:${{ github.sha }}
+        docker build -t ${{ secrets.ACR_SERVER }}/portfolio-cloud:${{ github.sha }} .
+        docker push ${{ secrets.ACR_SERVER }}/portfolio-cloud:${{ github.sha }}
 
     - name: Deploy su Azure App Service
       uses: azure/webapps-deploy@v2
@@ -31,4 +31,4 @@ jobs:
         username: ${{ secrets.ACR_USERNAME }}
         password: ${{ secrets.ACR_PASSWORD }}
         app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
-        images: '${{ secrets.ACR_SERVER }}/portfolio:${{ github.sha }}'
+        images: '${{ secrets.ACR_SERVER }}/portfolio-cloud:${{ github.sha }}'
