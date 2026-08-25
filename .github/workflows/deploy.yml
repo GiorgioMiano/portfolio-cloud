@@ -27,5 +27,7 @@ jobs:
     - name: Deploy su Azure App Service
       uses: azure/webapps-deploy@v2
       with:
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
         app-name: ${{ secrets.AZURE_WEBAPP_NAME }}
         images: '${{ secrets.ACR_SERVER }}/portfolio:${{ github.sha }}'
